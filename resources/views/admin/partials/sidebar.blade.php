@@ -41,11 +41,11 @@
                     <img src="{{ asset("backend-access/") }}/img/menu-icon/4.svg" alt="">
                 </div>
                 <div class="nav_title">
-                    <span>Product</span>
+                    <span>Điện thoại<img src="" alt=""></span>
                 </div>
             </a>
             <ul>
-                <li><a href="">Product Data</a></li>
+                <li><a href="{{ route('admin.phones') }}">Danh sách</a></li>
             </ul>
         </li>
     </ul>

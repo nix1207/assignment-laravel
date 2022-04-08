@@ -101,5 +101,17 @@ class CategoryController extends Controller
         return response()->json(['message' => 'Deleted']);
     }
 
+    /**
+     * @param Request $request
+     */
+    public function updateStatus (Request $request) 
+    {
+        $data = $request->all();
+        $this->category->where('id', $data['id'])->update([
+            'status' => $data['status'] == 0 ? 1 : 0
+        ]);
+
+        return response()->json(['message' => 'true']);
+    }
 
 }
