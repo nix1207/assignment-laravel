@@ -1,5 +1,5 @@
 @extends('admin.layout.admin')
-
+@section('title', 'Danh mục')
 @section('main_content')
     <div class="main_content_iner ">
         <div class="container-fluid p-0">

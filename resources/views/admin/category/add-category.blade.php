@@ -1,5 +1,5 @@
 @extends('admin.layout.admin')
-
+@section('title', 'Tạo mới danh mục')
 @section('main_content')  
 <div class="main_content_iner ">
     @if(session('success')) 

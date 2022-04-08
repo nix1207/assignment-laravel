@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PhoneController;
 use App\Http\Middleware\LoginCheck;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,8 @@ Route::get('/', function () {
 Route::post('login', [LoginController::class, 'index'])->name('login.admin');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout.admin');
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard')->middleware('login_check');
+Route::prefix('admin')->middleware('login_check')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard');
 
     // Category
     Route::prefix('category')->group(function () {
@@ -42,5 +43,6 @@ Route::prefix('admin')->group(function () {
     // Phone product
     Route::prefix('phones')->group(function(){
         Route::get('/', [PhoneController::class, 'index'])->name('admin.phones');
+        Route::get('add', [PhoneController::class, 'create'])->name('admin.create.phone');
     });
 });

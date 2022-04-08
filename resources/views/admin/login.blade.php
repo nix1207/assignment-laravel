@@ -41,6 +41,10 @@
                                     <div class="row">
                                         @if (session('role-error'))
                                             <h6 class='text-danger'> {{ session('role-error') }} </h6>
+                                        @elseif(session('login-fail'))
+                                            <h6 class='text-danger'> {{ session('login-fail') }} </h6>
+                                        @elseif (session('login-error'))
+                                        <h6 class='text-danger'> {{ session('login-error') }} </h6>
                                         @endif
                                     </div>
                                     <div class="modal-content cs_modal">

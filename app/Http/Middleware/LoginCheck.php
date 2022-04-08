@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+
 class LoginCheck
 {
     /**
@@ -17,14 +18,10 @@ class LoginCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check()){
-            $user = $request->user(); 
-            if($user->status == 1) {
-                return $next($request);   
-            }
+        if (auth()->check()) {
+            return $next($request);
         }
-        Auth::logout();
-        return redirect()->route('admin.login.view')->with('role-error', 'Tài khoản không có quyền');
-        
+
+        return redirect()->route('admin.login.view')->with('role-error', 'Chưa đăng nhập không thể vào page admin');
     }
 }

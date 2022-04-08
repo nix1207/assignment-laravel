@@ -13,14 +13,14 @@
                     <img src="{{ asset("backend-access/") }}/img/menu-icon/dashboard.svg" alt="">
                 </div>
                 <div class="nav_title">
-                    <span>Dashboard</span>
+                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </div>
             </a>
         </li>
 
         <h4 class="menu-text"><span>Danh mục</span> <i class="fas fa-ellipsis-h"></i> </h4>
         <li class="">
-            <a   class="has-arrow" href="#" aria-expanded="false">
+            <a  class="has-arrow" href="#" aria-expanded="false">
                 <div class="nav_icon_small">
                     <img src="{{ asset("backend-access/") }}/img/menu-icon/16.svg" alt="">
                 </div>

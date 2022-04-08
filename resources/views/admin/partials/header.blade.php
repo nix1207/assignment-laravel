@@ -114,25 +114,21 @@
                                                                    alt=""> <span>2</span> </a>
                         </li>
                     </div>
-                    {{-- <div class="profile_info">
-
-                        @if(Auth::user()->avatar == "")
+                    <div class="profile_info">
                             <img src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="#">
-                        @else
-                            <img src="{{ Auth::user()->avatar  }}" alt="#">
-                        @endif
+                       
                         <div class="profile_info_iner">
                             <div class="profile_author_name">
-                                <p>Admin </p>
-                                <h6 style="color: white; margin-top: 10px">{{ Auth::user()->name   }} </h6>
+                                <p> {{ Auth::user()->email }} </p>
+                                <h6 style="color: white; margin-top: 10px">{{ Auth::user()->name }} </h6>
                             </div>
                             <div class="profile_info_details">
-                                <a href="{{ route("user.profile" , ['id'=> Auth::id()]) }}">My Profile </a>
-                                <a href="#">Settings</a>
-                                <a href="{{ route('logout') }}">Log Out </a>
+                                {{-- <a href="{{ route("user.profile" , ['id'=> Auth::id()]) }}">My Profile </a> --}}
+                                {{-- <a href="#">Settings</a> --}}
+                                <a href="{{ route('logout.admin') }}">Log Out </a>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
