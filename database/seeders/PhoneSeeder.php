@@ -20,7 +20,7 @@ class PhoneSeeder extends Seeder
                 'desc' => 'Lorem ispicsum', 
                 'price' => rand(100, 999), 
                 'image_url' => 'https://picsum.photos/200', 
-                'category_id' => rand(1,5),
+                'category_id' => rand(1,4),
                 'status' => rand(0,1)
             ]);
         }

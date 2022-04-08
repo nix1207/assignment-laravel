@@ -1,4 +1,5 @@
 @extends('admin.layout.admin')
+@section('title', 'Chỉnh sửa danh mục')
 @section('main_content')
 <div class="main_content_iner ">
     <div class="container-fluid p-0 sm_padding_15px">
