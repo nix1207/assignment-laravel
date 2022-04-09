@@ -106,7 +106,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xoá danh mục</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật trạng thái</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -176,6 +176,9 @@
                 success: function() {
                     alert('Cập nhật trạng thái thành công');
                     location.reload();
+                }
+                error: function () {
+                    alert('Co loi xay ra vui long thu lai')
                 }
             })
         });
