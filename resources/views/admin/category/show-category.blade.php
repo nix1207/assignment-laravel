@@ -21,8 +21,8 @@
                                 <input  value="{{ $category->name }}" type="text" class="form-control" name="name" id="slug" placeholder="Nhập tên danh mục...">
                             </div>
                             <br>
-                            @if($errors->has('category_name'))
-                                <h6 class="card-subtitle mb-2 mb-2"><code>{{ $errors->first('category_name') }}</code></h6>
+                            @if($errors->has('name'))
+                                <h6 class="card-subtitle mb-2 mb-2"><code>{{ $errors->first('name') }}</code></h6>
                             @endif
                         </div>
                     </div>
@@ -41,6 +41,9 @@
                                 <textarea id="" cols="30" rows="10" name="desc" class="form-control"> {{ $category->desc }} </textarea>
                             </div>
                             <br>
+                            @if($errors->has('desc'))
+                                <h6 class="card-subtitle mb-2 mb-2"><code>{{ $errors->first('desc') }}</code></h6>
+                            @endif
                         </div>
                     </div>
                 </div>

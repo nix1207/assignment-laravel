@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
@@ -50,7 +51,6 @@ class CategoryController extends Controller
         DB::beginTransaction(); 
         try {
             $data = $request->all(); 
-            // dd($data);
             $this->category->create([
                 'name' => $data['name'], 
                 'desc' => $data['desc'], 
@@ -78,7 +78,7 @@ class CategoryController extends Controller
      * @param Request $request
      * @param Category $category
      */ 
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         $data = $request->all();
         $this->category->where('id', $category->id)->update([

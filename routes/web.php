@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PhoneController;
 use App\Http\Middleware\LoginCheck;
 use App\Models\Category;
+use App\Models\Phone;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,5 +45,10 @@ Route::prefix('admin')->middleware('login_check')->group(function () {
     Route::prefix('phones')->group(function(){
         Route::get('/', [PhoneController::class, 'index'])->name('admin.phones');
         Route::get('add', [PhoneController::class, 'create'])->name('admin.create.phone');
+        Route::post('store', [PhoneController::class, 'store'])->name('admin.store.phone'); 
+        Route::put('update-status', [PhoneController::class, 'updateStatus'])->name('admin.phone.update.status');
+        Route::get('{phone}', [PhoneController::class, 'showPhone'])->name('admin.phone.show'); 
+        Route::post('update/{phone}', [PhoneController::class, 'update'])->name('admin.phone.update');
+        Route::delete('delete',[PhoneController::class, 'delete'])->name('admin.phone.delete');
     });
 });
