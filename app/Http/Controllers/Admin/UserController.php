@@ -39,7 +39,7 @@ class UserController extends Controller
             'email' => $data['email'], 
             'birthday' => $data['birthday'],
             'status' => isset($data['status']) ? 1 : 0,
-            'password' => $data['password']
+            'password' => Hash::make($data['password'])
         ]);
 
         return redirect()->back()->with('success', 'Tạo mới tài khoản thành công');
@@ -53,19 +53,31 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         $data = $request->all();
-        User::where('id', $user->id)->update([
-            'email' => $data['email'],
-            'name' => $data['name'],
-            'birthday' => $data['birthday'], 
-            'status' => isset($data['status']) ? 1 : 0,
-        ]);
-
+        if($data['password'] == null) {
+            User::where('id', $user->id)->update([
+                'email' => $data['email'],
+                'name' => $data['name'],
+                'birthday' => $data['birthday'], 
+                'status' => isset($data['status']) ? 1 : 0,
+            ]);
+        }
+        else {
+            User::where('id', $user->id)->update([
+                'email' => $data['email'],
+                'name' => $data['name'],
+                'birthday' => $data['birthday'], 
+                'status' => isset($data['status']) ? 1 : 0,
+                'password' => Hash::make($data['password'])
+            ]);
+        }
+        
         return redirect()->back()->with('success', 'Cập nhật tài khoản thành công');
     }
 
     public function delete(Request $request) 
     {
         $data = $request->all();
+        
         User::where('id', $data['id'])->delete(); 
 
         return response()->json(['message' => 'Deleted']);

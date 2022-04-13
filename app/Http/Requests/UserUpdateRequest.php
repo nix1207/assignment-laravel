@@ -28,7 +28,8 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required', 
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->user->id)],
-            'birthday' => 'required', 
+            'birthday' => 'required',
+            'password_confirm' => 'same:password' 
         ];
     }
 }
