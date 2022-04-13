@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PhoneController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\LoginCheck;
 use App\Models\Category;
 use App\Models\Phone;
@@ -50,5 +51,16 @@ Route::prefix('admin')->middleware('login_check')->group(function () {
         Route::get('{phone}', [PhoneController::class, 'showPhone'])->name('admin.phone.show'); 
         Route::post('update/{phone}', [PhoneController::class, 'update'])->name('admin.phone.update');
         Route::delete('delete',[PhoneController::class, 'delete'])->name('admin.phone.delete');
+    });
+
+    // User 
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('admin.users');
+        Route::put('update-status',[UserController::class, 'updateStatus'])->name('admin.user.status');
+        Route::get('add', [UserController::class, 'create'])->name('admin.user.create');
+        Route::post('store', [UserController::class, 'store'])->name('admin.user.store');
+        Route::get('{user}', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('update/{user}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('delete',[UserController::class, 'delete'])->name('admin.user.delete');
     });
 });

@@ -1,5 +1,5 @@
 @extends('admin.layout.admin')
-@section('title', 'Danh mục')
+@section('title', 'User')
 @section('main_content')
     <div class="main_content_iner ">
         <div class="container-fluid p-0">
@@ -9,14 +9,14 @@
                         <div class="white_card_header">
                             <div class="box_header m-0">
                                 <div class="main-title">
-                                    <h3 class="m-0">Quản lí danh mục</h3>
+                                    <h3 class="m-0">Danh sách tài khoản</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="white_card_body">
                             <div class="QA_section">
                                 <div class="white_box_tittle list_header">
-                                    <h4>Danh mục</h4>
+                                    <h4>Tài khoản</h4>
                                     <div class="box_right d-flex lms_block">
                                         <div class="serach_field_2">
                                             <div class="search_inner">
@@ -29,7 +29,7 @@
                                             </div>
                                         </div>
                                         <div class="add_button ml-10">
-                                            <a href="{{ route('admin.category.add') }}" data-target="#addcategory"
+                                            <a href="{{ route('admin.user.create') }}" data-target="#addcategory"
                                                 class="btn_1">Thêm mới</a>
                                         </div>
                                     </div>
@@ -41,26 +41,30 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">STT</th>
-                                                <th scope="col">Tên danh mục</th>
+                                                <th scope="col">Tên</th>
+                                                <th scope="col">Email </th>
+                                                <th scope="col">Ngày sinh</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($categories as $item)
+                                            @foreach ($users as $item)
                                                 <tr>
                                                     <td>{{ $loop->index + 1 }}</td>
                                                     <td>{{ $item->name }}</td>
-                                                    <td> <a data-id="{{ $item->id }}"
+                                                    <td>{{ $item->email }}</td>
+                                                    <td>{{ $item->birthday }}</td>
+                                                    <td><a style="color: white" data-id="{{ $item->id }}"
                                                             data-status="{{ $item->status }}"
-                                                            class="btn {{ $item->status == 1 ? 'btn-primary' : 'btn-danger' }} status"
-                                                            data-toggle="modal"
-                                                            data-target="#confirmStatus">{{ $item->status == 1 ? 'Hiển thị' : 'Ẩn' }}</a>
+                                                            class="btn {{ $item->status == 1 ? 'btn-primary' : 'btn-danger' }} status {{ Auth::user()->id == $item->id ? 'd-none' : '' }} "
+                                                            data-toggle="modal"  
+                                                            data-target="#confirmStatus">{{ $item->status == 1 ? 'Active' : 'No-active' }}</a>
                                                     </td>
                                                     <td>
-                                                        <a href="#" data-id="{{ $item->id }}" class="far fa-trash-alt"
+                                                        <a href="#" data-id="{{ $item->id }}" class="far fa-trash-alt {{ Auth::user()->id == $item->id ? 'd-none' : '' }}"
                                                             id="delete" data-toggle="modal" data-target="#exampleModal"></a>
-                                                        <a href="{{ route('admin.category.show', ['category' => $item->id]) }}"
+                                                        <a href="{{ route('admin.user.edit', ['user' => $item->id]) }}"
                                                             class="far fa-edit"></a>
                                                     </td>
                                                 </tr>
@@ -84,13 +88,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xoá danh mục</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Xoá thành viên</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xoá danh mục này không
+                    Bạn có chắc chắn muốn xoá thành viên này không
                     <input type="text" value="" id="delete-id" class="d-none">
                 </div>
                 <div class="modal-footer">
@@ -127,7 +131,6 @@
 @section('js')
     <script>
         $(document).on('click', '#delete', function() {
-            // alert(23233);x
             var id = $(this).attr('data-id');
             // alert(id)
             $("#delete-id").val(id);
@@ -140,13 +143,13 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/admin/category/delete',
+                url: '/admin/users/delete',
                 data: {
                     "_token": "{{ csrf_token() }}",
                     'id': id_yes
                 },
                 success: function() {
-                    alert('Xoá danh mục thành công');
+                    alert('Xoá thành công');
                     location.reload();
                 }
             })
@@ -167,7 +170,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/admin/category/update-status',
+                url: '/admin/users/update-status',
                 data: {
                     "_token": "{{ csrf_token() }}",
                     'id': id,

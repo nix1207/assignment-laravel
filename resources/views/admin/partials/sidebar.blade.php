@@ -48,5 +48,20 @@
                 <li><a href="{{ route('admin.phones') }}">Danh sách</a></li>
             </ul>
         </li>
+
+        <h4 class="menu-text"><span>User Data</span> <i class="fas fa-ellipsis-h"></i> </h4>
+        <li class="">
+            <a  class="has-arrow" href="#" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <img src="{{ asset("backend-access/") }}/img/menu-icon/4.svg" alt="">
+                </div>
+                <div class="nav_title">
+                    <span>Thành viên<img src="" alt=""></span>
+                </div>
+            </a>
+            <ul>
+                <li><a href="{{ route('admin.users') }}">Danh sách</a></li>
+            </ul>
+        </li>
     </ul>
 </nav>
