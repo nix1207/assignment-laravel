@@ -23,7 +23,7 @@
                         <div class="white_card_body">
 
                             <div class="form-group mb-0">
-                                <input  value="" type="text" class="form-control" name="name" id="slug" placeholder="Nhập họ và tên">
+                                <input  value="{{ old('name') }}" type="text" class="form-control" name="name" id="slug" placeholder="Nhập họ và tên">
                             </div>
                             <br>
                             @if($errors->has('name'))
@@ -44,7 +44,7 @@
                         <div class="white_card_body">
 
                             <div class="form-group mb-0">
-                                <input  value="" type="text" class="form-control" name="email" id="slug" placeholder="Nhập email">
+                                <input  value="{{ old('email') }}" type="text" class="form-control" name="email" id="slug" placeholder="Nhập email">
                             </div>
                             <br>
                             @if($errors->has('email'))
@@ -67,7 +67,7 @@
 
                             <div class="form-group mb-0">
                                 <div class="input-group common_date_picker">
-                                    <input value="" autocomplete="off"
+                                    <input value="{{ old('birthday') }}" autocomplete="off"
                                            class="datepicker-here  digits"
                                            placeholder="Ngày sinh" name="birthday" type="text"
                                            data-language="en">
@@ -109,13 +109,33 @@
                             </div>
                         </div>
                         <div class="white_card_body">
-
                             <div class="form-group mb-0">
                                 <input  value="" type="password" class="form-control" name="password" id="slug" placeholder="Nhập mật khẩu">
                             </div>
                             <br>
-                            @if($errors->has('birthday'))
-                                <h6 class="card-subtitle mb-2 mb-2"><code>{{ $errors->first('birthday') }}</code></h6>
+                            @if($errors->has('password'))
+                                <h6 class="card-subtitle mb-2 mb-2"><code>{{ $errors->first('password') }}</code></h6>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Mật khẩu xác nhận</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+
+                            <div class="form-group mb-0">
+                                <input  value="" type="password" class="form-control" name="password_confirm" id="slug" placeholder="Nhập mật khẩu xác nhận">
+                            </div>
+                            <br>
+                            @if($errors->has('password_confirm'))
+                                <h6 class="card-subtitle mb-2 mb-2"><code>{{ $errors->first('password_confirm') }}</code></h6>
                             @endif
                         </div>
                     </div>
