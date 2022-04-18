@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
+use App\Models\Phone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -96,9 +97,16 @@ class CategoryController extends Controller
     public function delete(Request $request) 
     {
         $data = $request->all();
-        $this->category->where('id', $data['id'])->delete(); 
-
-        return response()->json(['message' => 'Deleted']);
+        $category = $this->category->where('id', $data['id'])->first();
+        if($category->phones) {
+           $ids = $category->phones->pluck('id');
+           Phone::whereIn('id', $ids)->delete();
+           $category->delete();
+           return response()->json(['message' => 'Deleted']);
+        }
+        else {
+            return false;
+        }  
     }
 
     /**

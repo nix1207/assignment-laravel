@@ -35,8 +35,8 @@ class CategoryUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Ten danh muc khong duoc de trong', 
-            'desc.required' => 'Can 1 vai mo ta san pham'
+            'name.required' => 'Tên danh mục không được để trống', 
+            'desc.required' => 'Cần 1 vài mô tả sản phẩm'
         ];
     }
 }
