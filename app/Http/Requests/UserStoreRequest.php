@@ -31,4 +31,17 @@ class UserStoreRequest extends FormRequest
             'password_confirm' => 'required|same:password'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => '', 
+            'email.required' => '', 
+            'email.email' => '', 
+            'email.unique' => '', 
+            'name.required' => '', 
+        ];
+    }
+
+    
 }

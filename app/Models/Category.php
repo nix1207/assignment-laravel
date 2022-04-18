@@ -17,4 +17,9 @@ class Category extends Model
         'parent_id', 
         'status'
     ];
+
+    public function phones ()
+    {
+        return $this->hasMany(Phone::class, 'category_id');
+    }
 }
