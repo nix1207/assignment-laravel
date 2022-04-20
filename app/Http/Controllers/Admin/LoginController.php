@@ -22,10 +22,11 @@ class LoginController extends Controller
         
         if($checkAuth) {
           $checkUserStatus =  User::where('email', $data['email'])->first(); 
-          if($checkUserStatus->status == 1){
-            return redirect()->route('admin.dashboard')->with('login-success', 'Chào mừng bạn đến với trang admin'); 
-          }else {
+          if($checkUserStatus->status == 0){
             return redirect()->route('admin.login.view')->with('login-fail', 'Tài khoản chưa được cấp quyền để vào admin');
+          }
+          elseif($checkUserStatus->status == 1) {
+            return redirect()->route('admin.dashboard')->with('login-success', 'Chào mừng bạn đến với trang admin'); 
           }
         }
         else {
@@ -44,7 +45,7 @@ class LoginController extends Controller
 
     public function login () 
     {
-      if(auth()->check()) {
+      if(auth()->check() && auth()->user()->status == 1) {
         return redirect()->route('admin.dashboard');
       }
       return view('admin.login'); 

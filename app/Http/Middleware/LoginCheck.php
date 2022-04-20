@@ -21,7 +21,6 @@ class LoginCheck
         if (auth()->check()) {
             return $next($request);
         }
-
         return redirect()->route('admin.login.view')->with('role-error', 'Chưa đăng nhập không thể vào page admin');
     }
 }
